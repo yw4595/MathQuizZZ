@@ -6,6 +6,29 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MathQuiz
 {
+    /**
+
+The MainForm class is the main form of the math game application. It contains fields for storing user information such as the user's name, number of questions, and number of correct answers.
+It also contains fields for storing information about the current math problem being displayed, such as the operator, values, and answer.
+The class utilizes a random number generator to create new math problems and has a field for storing the time limit for each problem.
+Fields:
+myName: stores the user's name
+nQuestions: stores the total number of questions to be asked
+sQuestions: stores the number of questions asked so far
+nResponse: stores the user's numeric response to the current math problem
+sResponse: stores the user's string response to the current math problem
+nMaxRange: stores the maximum value that can be used for generating random values in math problems
+nCorrect: stores the number of correct answers
+bValid: stores whether the user's response to the current math problem is valid or not
+rand: a Random object used to generate random numbers for math problems
+nOp: stores the current math operator being used
+val1: stores the first value of the current math problem
+val2: stores the second value of the current math problem
+nAnswer: stores the correct answer to the current math problem
+nCntr: stores the total number of problems attempted so far
+nTimeLimit: stores the time limit for each math problem
+nTimeRemaining: stores the time remaining for the current math problem
+*/
     public partial class MainForm : Form
     {
         private string myName = "";
@@ -33,25 +56,27 @@ namespace MathQuiz
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show("Welcome to Math Quiz!", "Math Quiz", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+       private void MainForm_Load(object sender, EventArgs e)
+{
+    // Displays a welcome message box when the form is loaded
+    MessageBox.Show("Welcome to Math Quiz!", "Math Quiz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+}
 
-        private void btnStart_Click(object sender, EventArgs e)
+private void btnStart_Click(object sender, EventArgs e)
+{
+    // Prompt the user for their name and store it in the private variable 'myName'
+    while (true)
+    {
+        myName = Microsoft.VisualBasic.Interaction.InputBox("What is your name?", "Math Quiz");
+        if (myName.Length > 0)
         {
-            // fetch the user's name into myName
-            while (true)
-            {
-                myName = Microsoft.VisualBasic.Interaction.InputBox("What is your name?", "Math Quiz");
-                if (myName.Length > 0)
-                {
-                    break;
-                }
-            }
-
-            StartNewGame();
+            break;
         }
+    }
+
+    // Start a new game
+    StartNewGame();
+}
 
         private void StartNewGame()
         {
